@@ -1,0 +1,121 @@
+.anime-grid-section {
+    padding: 40px 0;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.section-title {
+    position: relative;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.title-accent {
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--gradient-primary);
+    border-radius: 2px;
+}
+
+.view-all-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 14px;
+    transition: all var(--transition-fast);
+}
+
+.view-all-btn:hover {
+    background: var(--bg-hover);
+    color: var(--primary);
+}
+
+.view-all-btn .arrow {
+    transition: transform var(--transition-fast);
+}
+
+.view-all-btn:hover .arrow {
+    transform: translateX(4px);
+}
+
+/* Grid */
+.anime-grid {
+    display: grid;
+    gap: 24px;
+}
+
+.anime-grid.cols-5 {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.anime-grid.cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.anime-grid.cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* Skeleton */
+.anime-card-skeleton {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--bg-card);
+    padding-bottom: 16px;
+}
+
+/* Responsive */
+@media (max-width: 1400px) {
+    .anime-grid.cols-5 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 1100px) {
+    .anime-grid.cols-5,
+    .anime-grid.cols-4 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .section-title {
+        font-size: 22px;
+    }
+
+    .anime-grid.cols-5,
+    .anime-grid.cols-4,
+    .anime-grid.cols-3 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .anime-grid.cols-5,
+    .anime-grid.cols-4,
+    .anime-grid.cols-3 {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+}

@@ -1,0 +1,325 @@
+.video-player {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #000;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.video-player video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.video-player.fullscreen {
+    border-radius: 0;
+}
+
+/* Big Play Button */
+.big-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-glow);
+    transition: all var(--transition-normal);
+    z-index: 10;
+}
+
+.big-play-btn:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.big-play-btn svg {
+    margin-left: 4px;
+}
+
+/* Top Bar */
+.player-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    z-index: 5;
+}
+
+.video-player.show-controls .player-top {
+    opacity: 1;
+}
+
+.player-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.episode-badge {
+    padding: 6px 12px;
+    background: var(--primary);
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.player-title h3 {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/* Controls */
+.player-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    z-index: 5;
+}
+
+.video-player.show-controls .player-controls {
+    opacity: 1;
+}
+
+/* Progress Bar */
+.progress-container {
+    position: relative;
+    height: 6px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 3px;
+    cursor: pointer;
+    margin-bottom: 16px;
+    transition: height var(--transition-fast);
+}
+
+.progress-container:hover {
+    height: 8px;
+}
+
+.progress-buffered {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: rgba(255,255,255,0.3);
+    border-radius: 3px;
+}
+
+.progress-played {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: var(--primary);
+    border-radius: 3px;
+}
+
+.progress-thumb {
+    position: absolute;
+    top: 50%;
+    width: 14px;
+    height: 14px;
+    background: var(--primary);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform var(--transition-fast);
+    box-shadow: 0 0 10px rgba(255,107,157,0.5);
+}
+
+.progress-container:hover .progress-thumb {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Controls Row */
+.controls-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.controls-left,
+.controls-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.control-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+}
+
+.control-btn:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.control-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.control-btn.play-pause {
+    width: 48px;
+    height: 48px;
+    background: var(--primary);
+    font-size: 20px;
+}
+
+.control-btn.play-pause:hover {
+    background: var(--primary-dark);
+}
+
+/* Volume */
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.volume-slider {
+    width: 0;
+    opacity: 0;
+    transition: all var(--transition-normal);
+}
+
+.volume-control:hover .volume-slider {
+    width: 80px;
+    opacity: 1;
+}
+
+.volume-slider {
+    -webkit-appearance: none;
+    height: 4px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 2px;
+    outline: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Time Display */
+.time-display {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.8);
+    margin-left: 8px;
+}
+
+/* Settings */
+.settings-container {
+    position: relative;
+}
+
+.settings-menu {
+    position: absolute;
+    bottom: 50px;
+    right: 0;
+    min-width: 200px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    padding: 12px;
+    animation: fadeIn 0.2s ease;
+}
+
+.settings-section {
+    margin-bottom: 16px;
+}
+
+.settings-section:last-child {
+    margin-bottom: 0;
+}
+
+.settings-section h4 {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.settings-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.settings-options button {
+    padding: 6px 12px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 600;
+    transition: all var(--transition-fast);
+}
+
+.settings-options button:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+.settings-options button.active {
+    background: var(--primary);
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .player-controls {
+        padding: 12px;
+    }
+
+    .control-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+
+    .control-btn.play-pause {
+        width: 42px;
+        height: 42px;
+    }
+
+    .episode-nav {
+        display: none;
+    }
+
+    .time-display {
+        font-size: 11px;
+    }
+}

@@ -1,0 +1,280 @@
+.hero {
+    position: relative;
+    height: 85vh;
+    min-height: 600px;
+    max-height: 900px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Backgrounds */
+.hero-backgrounds {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transform: scale(1.1);
+    transition: all 1s ease;
+}
+
+.hero-bg.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-hero);
+}
+
+.hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--bg-primary) 0%, transparent 50%);
+}
+
+/* Content */
+.hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    padding-left: calc(var(--sidebar-width) + 40px);
+}
+
+.hero-info {
+    flex: 1;
+    max-width: 600px;
+}
+
+.hero-badges {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.hero-badges .badge {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.hero-badges .badge svg {
+    color: #ffc107;
+}
+
+.hero-title {
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.hero-original {
+    font-size: 20px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+}
+
+.hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.hero-description {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 16px;
+}
+
+/* Hero Card */
+.hero-card {
+    position: relative;
+    width: 300px;
+    aspect-ratio: 3/4;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    flex-shrink: 0;
+}
+
+.hero-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.hero-card:hover img {
+    transform: scale(1.05);
+}
+
+.hero-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+}
+
+.hero-card:hover .hero-card-overlay {
+    opacity: 1;
+}
+
+.play-icon {
+    width: 60px;
+    height: 60px;
+    padding: 18px;
+    background: var(--primary);
+    border-radius: 50%;
+    color: white;
+    box-shadow: var(--shadow-glow);
+}
+
+/* Navigation */
+.hero-nav {
+    position: absolute;
+    bottom: 80px;
+    right: 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    z-index: 2;
+}
+
+.hero-nav-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+}
+
+.hero-nav-btn:hover {
+    background: var(--primary);
+}
+
+.hero-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.hero-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: all var(--transition-fast);
+}
+
+.hero-dot.active {
+    width: 30px;
+    border-radius: 5px;
+    background: var(--primary);
+}
+
+/* Progress Bar */
+.hero-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.hero-progress-bar {
+    height: 100%;
+    background: var(--gradient-primary);
+    animation: progress linear forwards;
+}
+
+@keyframes progress {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .hero-content {
+        padding-left: 40px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .hero-card {
+        display: none;
+    }
+
+    .hero-title {
+        font-size: 42px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        height: 70vh;
+        min-height: 500px;
+    }
+
+    .hero-content {
+        padding: 0 20px;
+    }
+
+    .hero-title {
+        font-size: 32px;
+    }
+
+    .hero-original {
+        font-size: 16px;
+    }
+
+    .hero-nav {
+        right: 20px;
+        bottom: 40px;
+    }
+}
