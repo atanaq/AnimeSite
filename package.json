@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "homepage": "https://atanaq.github.io/AnimeSite/",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "framer-motion": "^12.23.26",
